@@ -27,7 +27,9 @@ export class ReportsService {
       this.logger.log(`Date: ${reportDate}`);
       this.logger.log(`Active Employees: ${activeCount}`);
       this.logger.log('========================================');
-      this.logger.log('[EMAIL SIMULATION] Report would be sent to admin@local.com');
+      this.logger.log(
+        '[EMAIL SIMULATION] Report would be sent to admin@local.com',
+      );
       this.logger.log('Daily employee report completed successfully');
     } catch (error) {
       this.logger.error('Failed to generate daily report', error);

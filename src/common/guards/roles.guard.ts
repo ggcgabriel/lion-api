@@ -8,6 +8,17 @@ import { Reflector } from '@nestjs/core';
 import { Role } from '@prisma/client';
 import { ROLES_KEY } from '../decorators/roles.decorator.js';
 
+interface UserPayload {
+  id: number;
+  email: string;
+  name: string;
+  role: Role;
+}
+
+interface RequestWithUser {
+  user?: UserPayload;
+}
+
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
@@ -22,7 +33,8 @@ export class RolesGuard implements CanActivate {
       return true;
     }
 
-    const { user } = context.switchToHttp().getRequest();
+    const request = context.switchToHttp().getRequest<RequestWithUser>();
+    const { user } = request;
 
     if (!user) {
       throw new ForbiddenException('User not authenticated');
