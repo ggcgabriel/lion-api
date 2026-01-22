@@ -271,9 +271,13 @@ docker run -d \
   --name lion-mysql \
   -e MYSQL_ROOT_PASSWORD=root \
   -e MYSQL_DATABASE=lion_db \
+  -e MYSQL_USER=user \
+  -e MYSQL_PASSWORD=password \
   -p 3306:3306 \
   mysql:8.0
 ```
+
+This creates a MySQL container with credentials matching `.env.example`.
 
 ## License
 
